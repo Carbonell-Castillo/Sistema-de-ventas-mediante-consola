@@ -8,6 +8,7 @@ package com.mycompany.ipc1_s12023_practica1_202203069;
  *
  * @author bruce
  */
+import java.util.Scanner;
 public class AddData {
     
 }

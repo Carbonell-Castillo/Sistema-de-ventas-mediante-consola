@@ -13,6 +13,11 @@ public class Identity {
     private String nit;
     private String date;
 
+    public Identity(){
+        name="";
+        nit="";
+        date="";
+    }
     public Identity(String name, String nit, String date) {
         this.name = name;
         this.nit = nit;
