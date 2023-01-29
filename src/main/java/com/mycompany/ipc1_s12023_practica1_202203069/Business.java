@@ -61,6 +61,4 @@ public class Business extends Identity{
         this.Total = Total;
     }
     
-    
-    
 }
