@@ -38,7 +38,7 @@ public class AddData {
                         priceProduct = sgData.getDataFloat("Ingres el precio del producto");
                     }else{
                         System.out.println("Se llego al limite de productos permitidos para agregar");
-                        initialMenu();
+                        sgData.initialMenu();
                         break;
                 }
                 validationProduct=validateDataProduct(productName, priceProduct);
@@ -64,7 +64,7 @@ public class AddData {
                         discount = sgData.getDataFloat("Ingres el descuento tome como formato 1 a 100");
                     }else{
                         System.out.println("Se llego al limite de cupones permitidos para agregar");
-                        initialMenu();
+                        sgData.initialMenu();
                         break;
                     }
                     validationCoupon=validateDataCoupon(code, discount);
@@ -94,7 +94,7 @@ public class AddData {
                     validation=true;
                     break;
                 }else{
-                    sgData.products[i]= new Product(name, price);
+                    sgData.products[i]= new Product((i+1),name, price);
                     System.out.println("------------------------------------");
                     System.out.println("Registro del producto exitosamente No. "+ (i+1));
                     System.out.println("Nombre del producto: "+ sgData.products[i].getName());
@@ -130,7 +130,7 @@ public class AddData {
                 }else{
                     sgData.coupons[i]= new Coupon(code, (discount/100));
                     System.out.println("------------------------------------");
-                    System.out.println("Registro del producto exitosamente No. "+ (i+1));
+                    System.out.println("Registro del Cupon exitosamente No. "+ (i+1));
                     System.out.println("Codigo: "+ sgData.coupons[i].getName());
                     System.out.println("Descuento: "+ sgData.coupons[i].getDiscount());
                     System.out.println("------------------------------------");
@@ -145,26 +145,5 @@ public class AddData {
         return validation;
     }
     
-    public  void initialMenu(){
-        Integer option= sgData.getDataInteger("¿Deseas visualizar el menu nuevamente? \n 1. Si      2. no");
-        
-        if(option==1){
-            Integer optionMenu=sgData.menu();
-            if(optionMenu==1 || optionMenu==2){
-                System.out.println("Ten en cuenta que si tenias registros previos seran eliminados.");
-                Integer subOption= sgData.getDataInteger("¿Aun asi quieres continuar? \n 1. Si      2. no");
-                
-                if(subOption==1){
-                     operations(optionMenu);
-                }else{
-                    initialMenu();
-                }
-                
-            }else{
-                operations(option);
-            }
-        }else{
-            System.out.println("Gracias por visitarnos");
-        }
-    }
+
 }

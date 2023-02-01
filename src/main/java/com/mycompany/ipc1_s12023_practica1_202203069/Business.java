@@ -13,7 +13,14 @@ public class Business extends Identity{
     private Float subtotal;
     private Float discount;
     private Float Total;
-
+    
+    public Business(){
+        cashierName="";
+        subtotal=0f;
+        discount=0f;
+        Total=0f;
+    }
+    
     public Business(String cashierName, Float subtotal, Float discount, Float Total) {
         this.cashierName = cashierName;
         this.subtotal = subtotal;

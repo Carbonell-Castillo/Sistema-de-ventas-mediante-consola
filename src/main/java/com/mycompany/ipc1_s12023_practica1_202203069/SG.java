@@ -13,9 +13,8 @@ import java.util.Scanner;
 public class SG {
     //Important data
     
-    public Product[] products;
-    public Coupon[] coupons;
-    
+    public static Product[] products;
+    public static Coupon[] coupons;
     Scanner readData = new Scanner(System.in);
     //menu
     
@@ -85,7 +84,31 @@ public class SG {
         System.out.println("Opcion seleccionada: "+ option);
         return option;
     }
-    
+   
+    public void initialMenu(){
+       AddData addData = new AddData();
+       Sales sales = new Sales();
+        Integer option= getDataInteger("¿Deseas visualizar el menu nuevamente? \n 1. Si      2. no");
+        
+        if(option==1){
+            Integer optionMenu=menu();
+            if(optionMenu==1 || optionMenu==2){
+                System.out.println("Ten en cuenta que si tenias registros previos seran eliminados.");
+                Integer subOption= getDataInteger("¿Aun asi quieres continuar? \n 1. Si      2. no");
+                
+                if(subOption==1){
+                     addData.operations(optionMenu);
+                }else{
+                    initialMenu();
+                }
+                
+            }else{
+                sales.operationSales(optionMenu);
+            }
+        }else{
+            System.out.println("Gracias por visitarnos");
+        }
+    }
     
     Credentials credentials = new Credentials();
     

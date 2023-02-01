@@ -9,15 +9,18 @@ package com.mycompany.ipc1_s12023_practica1_202203069;
  * @author bruce
  */
 public class Product {
+    private Integer n;
     private String name;
     private Float price;
     
     public Product(){
+        n=0;
         name="";
         price=0f;
     }
     
-    public Product(String name, Float price) {
+    public Product(Integer n, String name, Float price) {
+        this.n= n;
         this.name = name;
         this.price = price;
     }
@@ -36,6 +39,14 @@ public class Product {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public Integer getN() {
+        return n;
+    }
+
+    public void setN(Integer n) {
+        this.n = n;
     }
     
     
