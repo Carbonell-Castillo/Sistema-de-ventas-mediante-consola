@@ -11,28 +11,24 @@ import java.util.Scanner;
  * @author bruce
  */
 public class Main {
-
+    
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Scanner readData = new Scanner(System.in);
-        SG validation = new SG();
+        
+        SG data = new SG();
         Credentials ejecutar= new Credentials();
         System.out.println("Usuario "+ejecutar.getUser());
         System.out.println("Password "+ejecutar.getPassword());
+        System.out.println("----------------------------");
         
-        Boolean validationUserData=true;
-        
-        do {            
-        System.out.println("Ingrese su usuario");
-        String user = readData.nextLine();
-        System.out.println("Ingrese su contraseña");
-        String password= readData.nextLine();
-        validationUserData=validation.validationData(user, password);
-        } while (!validationUserData);
-     
-        
-        
-        
+        AddData addData = new AddData();
+        if(data.validationCredentials()){
+            //Show menu
+            Integer opcionElegida=data.menu();
+            AddData.optionss=opcionElegida;
+            addData.operations(  opcionElegida);
+            
+        }
         
         
     }
