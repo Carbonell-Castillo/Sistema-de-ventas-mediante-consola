@@ -17,16 +17,17 @@ public class AddData {
     SG sgData = new SG();
     public  void operations(Integer option){
         
-        System.out.println("oppp "+optionss);
+        
         switch (option) {
             case 1:
-                Integer DatoLeido= sgData.getDataInteger("Ingrese la cantidad de productos que desea registrar");
-                sgData.setNewProducts(DatoLeido);
-                System.out.println("Dato leido "+DatoLeido);
-                System.out.println("Datos registrados: "+ sgData.products.length);
+                Integer quantityOfProducts= sgData.getDataInteger("Ingrese la cantidad de productos que desea registrar");
+                sgData.setNewProducts(quantityOfProducts);
+                System.out.println("Datos a registrar: "+ sgData.products.length);
+                
                 String productName;
                 Float priceProduct;
                 Boolean validationProduct=false;
+                
                 int i=0;
                 do {
                 if(!validationProduct){
@@ -46,13 +47,19 @@ public class AddData {
                 break;
             case 2:
                 
-                System.out.println("Entro a caso 2");
-                /* String code;
+                Integer quantityOfCoupons = sgData.getDataInteger("Ingrese la cantidad de codigos de descuento que deseas registrar");
+                sgData.setNewCoupons(quantityOfCoupons);
+                System.out.println("Datos a registrar: "+ sgData.coupons.length);
+                
+                String code;
                 Float discount;
+                Boolean validationCoupon=false;
                 int i2=0;
                 do {   
-                i2++;
-                    if(i2<sgData.coupons.length){
+                if(!validationCoupon){
+                    i2++;
+                }
+                    if(i2<=sgData.coupons.length){
                         code= sgData.getDataString("Ingrese el codigo de descuento");
                         discount = sgData.getDataFloat("Ingres el descuento tome como formato 1 a 100");
                     }else{
@@ -60,10 +67,10 @@ public class AddData {
                         initialMenu();
                         break;
                     }
-                        
-                } while (validateDataCoupon(code, discount));
+                    validationCoupon=validateDataCoupon(code, discount);
+                } while (validationCoupon || i2<=sgData.coupons.length);
                 break;
-                */
+                
             default:
                 System.out.println("Entro a default");
                 throw new AssertionError();
@@ -73,7 +80,6 @@ public class AddData {
     
     public Boolean validateDataProduct(String name, Float price){
         Boolean validation=false;
-        System.out.println("entroo 1");
         //if the name exist
         for (int i = 0; i < sgData.products.length ; i++) {
             if(sgData.products[i] != null){
@@ -83,7 +89,6 @@ public class AddData {
                     break;
                 }
             }else{
-                System.out.println("entro 2");
                 if(price<=0){
                     System.out.println("El precio del producto es menor a cero, ingreselo nuevamente");
                     validation=true;
@@ -103,8 +108,8 @@ public class AddData {
         return validation;
     }
     
-    public static Boolean validateDataCoupon(String code, Float discount){
-        SG sgData = new SG();
+    public Boolean validateDataCoupon(String code, Float discount){
+
         Boolean validation=false;
         
         if(code.length()<=4){
@@ -123,22 +128,24 @@ public class AddData {
                     validation=true;
                     break;
                 }else{
-                    sgData.coupons[i].setName(code);
-                    sgData.coupons[i].setDiscount(discount/100);
+                    sgData.coupons[i]= new Coupon(code, (discount/100));
                     System.out.println("------------------------------------");
                     System.out.println("Registro del producto exitosamente No. "+ (i+1));
                     System.out.println("Codigo: "+ sgData.coupons[i].getName());
                     System.out.println("Descuento: "+ sgData.coupons[i].getDiscount());
                     System.out.println("------------------------------------");
+                    break;
                 }
             }
         }
+        }else{
+            System.out.println("El codigo excede los 4 caracteres, ingreselo nuevamente");
+            validation = true;
         }
         return validation;
     }
     
-    public static void initialMenu(){
-        SG sgData = new SG();
+    public  void initialMenu(){
         Integer option= sgData.getDataInteger("¿Deseas visualizar el menu nuevamente? \n 1. Si      2. no");
         
         if(option==1){
@@ -148,11 +155,13 @@ public class AddData {
                 Integer subOption= sgData.getDataInteger("¿Aun asi quieres continuar? \n 1. Si      2. no");
                 
                 if(subOption==1){
-                    // operations(optionMenu);
+                     operations(optionMenu);
                 }else{
                     initialMenu();
                 }
                 
+            }else{
+                operations(option);
             }
         }else{
             System.out.println("Gracias por visitarnos");
