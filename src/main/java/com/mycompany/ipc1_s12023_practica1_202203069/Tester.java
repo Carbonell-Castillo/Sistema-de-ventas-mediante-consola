@@ -4,7 +4,7 @@
  */
 package com.mycompany.ipc1_s12023_practica1_202203069;
 
-import java.util.Arrays;
+
 import java.util.Scanner;
 
 /**
@@ -15,7 +15,7 @@ public class Tester {
     
     public static void main(String[] args) {
     
-     int[] array = new int[] {2, 1, 5, 3, 4};
+    int[] array = new int[] {2, 1, 5, 3, 4};
     boolean isSorted = false;
 
     while (!isSorted) {
@@ -30,7 +30,7 @@ public class Tester {
       }
     }
 
-    System.out.println(Arrays.toString(array));
+    
     
     }
 }

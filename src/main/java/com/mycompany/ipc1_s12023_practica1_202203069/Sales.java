@@ -49,7 +49,7 @@ public class Sales {
                    } 
                    
                   do {                         
-                         Integer nProduct = sg.getDataInteger("Ingrese el numero de producto que desea comprar \n si desea terminar escriba -1");                         
+                         Integer nProduct = sg.getDataInteger("Ingrese el numero de producto que desea comprar si desea terminar escriba -1");                         
                          validationNProduct=searchProduct(nProduct);
                          if(!validationNProduct){
                              if(nProduct<0){
@@ -128,7 +128,30 @@ public class Sales {
             case 6:
                 if(validateBusiness()){
                     System.out.println("-----------Reporte-----------");
-                
+                    //Sort data
+                    boolean isSorted = false;
+
+                    while (!isSorted) {
+                        isSorted = true;
+                        for (int i = 0; i < SG.quantityProducts.length - 1; i++) {
+                            if (SG.quantityProducts[i] < SG.quantityProducts[i + 1]) {
+                                int temp = SG.quantityProducts[i];
+                                SG.quantityProducts[i] = SG.quantityProducts[i + 1];
+                                SG.quantityProducts[i + 1] = temp;
+                                
+                                //sort product
+                                Product tempProducts = SG.products[i];
+                                SG.products[i]=SG.products[i+1];
+                                SG.products[i+1]=tempProducts;
+                                isSorted = false;
+                            }
+                        }
+                    }
+                    
+                    for (int i = 0; i < SG.products.length; i++) {
+                        System.out.println(SG.products[i].getName()+" ---------> "+ SG.quantityProducts[i]);
+                    }
+                    System.out.println("---------------------------");
                 }
                 break;
             default:

@@ -53,6 +53,7 @@ public class SG {
     public Integer getDataInteger(String message){
         Integer num=0;
         boolean validation=false;
+        readData.reset();
         do {            
             try {
                 showMessage(message);
@@ -77,34 +78,37 @@ public class SG {
            System.out.println("3. Realizar ventas");
            System.out.println("4. Aplicar descuentos a las compras con codigos promocionales");
            System.out.println("5. Emitir factura");
+           System.out.println("6. Emitir reporte");
            option= readData.nextInt();
            if(option<0 || option>7){
                System.out.println("Opcion seleccionada incorrecta, vuelva a selecionar una opcion");
            }
            
         } while (option<0 || option>7);
-        
+        System.out.println("");
         System.out.println("Opcion seleccionada: "+ option);
         return option;
     }
-   
-    public void initialMenu(){
+   public void conditionalMenu(Integer optionMenu){
        AddData addData = new AddData();
+       System.out.println("Ten en cuenta que si tenias registros previos seran eliminados.");
+       Integer subOption= getDataInteger("¿Aun asi quieres continuar? \n 1. Si      2. no");       
+        if(subOption==1){
+            addData.operations(optionMenu);
+        }else{
+             initialMenu();
+        }
+   }
+    public  void initialMenu(){
+       
        Sales sales = new Sales();
+        System.out.println("");
         Integer option= getDataInteger("¿Deseas visualizar el menu nuevamente? \n 1. Si      2. no");
         
         if(option==1){
             Integer optionMenu=menu();
             if(optionMenu==1 || optionMenu==2){
-                System.out.println("Ten en cuenta que si tenias registros previos seran eliminados.");
-                Integer subOption= getDataInteger("¿Aun asi quieres continuar? \n 1. Si      2. no");
-                
-                if(subOption==1){
-                     addData.operations(optionMenu);
-                }else{
-                    initialMenu();
-                }
-                
+                conditionalMenu(optionMenu);
             }else{
                 sales.operationSales(optionMenu);
             }

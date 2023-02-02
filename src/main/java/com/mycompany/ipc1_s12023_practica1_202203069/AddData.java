@@ -34,6 +34,8 @@ public class AddData {
                     i++;
                 }
                     if(i<=sgData.products.length){
+                        System.out.println("");
+                        System.out.println("--------Regitro No."+i);
                         productName= sgData.getDataString("Ingrese el nombre del producto");
                         priceProduct = sgData.getDataFloat("Ingres el precio del producto");
                     }else{
@@ -60,6 +62,8 @@ public class AddData {
                     i2++;
                 }
                     if(i2<=sgData.coupons.length){
+                        System.out.println("");
+                        System.out.println("--------Regitro No."+i2);
                         code= sgData.getDataString("Ingrese el codigo de descuento");
                         discount = sgData.getDataFloat("Ingres el descuento tome como formato 1 a 100");
                     }else{
@@ -72,7 +76,6 @@ public class AddData {
                 break;
                 
             default:
-                System.out.println("Entro a default");
                 Sales sales = new Sales();
                 sales.operationSales(option);
                 break;
