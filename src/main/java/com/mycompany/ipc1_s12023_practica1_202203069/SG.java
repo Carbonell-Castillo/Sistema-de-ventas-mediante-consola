@@ -13,9 +13,10 @@ import java.util.Scanner;
 public class SG {
     //Important data
     
-    public static Product[] products;
-    public static Coupon[] coupons;
+    public static Product[] products = new Product[1];
+    public static Coupon[] coupons = new Coupon[1];
     public static Business[] businesses= new Business[1];
+    
     public static Integer quantityProducts[];
     Scanner readData = new Scanner(System.in);
     //menu

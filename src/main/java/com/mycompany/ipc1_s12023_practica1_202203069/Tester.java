@@ -15,13 +15,22 @@ public class Tester {
     
     public static void main(String[] args) {
     
-     Integer numeros[]= new Integer[10];
-    for (int i = 0; i < numeros.length; i++) {
-    numeros[i] = 0;
-    } 
-     numeros[0]= numeros[0]+1;
-     
-        System.out.println(numeros[0]);
+     int[] array = new int[] {2, 1, 5, 3, 4};
+    boolean isSorted = false;
+
+    while (!isSorted) {
+      isSorted = true;
+      for (int i = 0; i < array.length - 1; i++) {
+        if (array[i] < array[i + 1]) {
+          int temp = array[i];
+          array[i] = array[i + 1];
+          array[i + 1] = temp;
+          isSorted = false;
+        }
+      }
     }
- 
+
+    System.out.println(Arrays.toString(array));
+    
+    }
 }
