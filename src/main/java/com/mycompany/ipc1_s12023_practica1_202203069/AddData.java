@@ -73,7 +73,9 @@ public class AddData {
                 
             default:
                 System.out.println("Entro a default");
-                throw new AssertionError();
+                Sales sales = new Sales();
+                sales.operationSales(option);
+                break;
         }
         
     }

@@ -16,7 +16,7 @@ public class Sales {
 
     
     public void operationSales(Integer option){
-        Integer quantityProducts[] = new Integer[SG.products.length];
+        
         Float discount;
         switch (option) {
             case 3:
@@ -31,11 +31,10 @@ public class Sales {
                       nit="C/F";
                   }
                       business.setNit(nit);
-                      System.out.println("Listado de productos: ");
-                      System.out.println(SG.products.length);
                       
                   //Product List
                  if (!(SG.products.length<=0)) {
+                   sg.setNewQuantityProducts(SG.products.length);
                    System.out.println("----Listado de productos----- ");
                    System.out.println(SG.products.length);
                   for (int i = 0; i < SG.products.length; i++) {
@@ -43,8 +42,8 @@ public class Sales {
                   }
                   Boolean validationNProduct=false;
                   
-                   for (int i = 0; i < quantityProducts.length; i++) {
-                        quantityProducts[i] = 0;
+                   for (int i = 0; i < SG.quantityProducts.length; i++) {
+                        SG.quantityProducts[i] = 0;
                    } 
                    
                   do {                         
@@ -56,7 +55,7 @@ public class Sales {
                              }else{
                              for (int i = 0; i < SG.products.length; i++) {
                                  if(nProduct== SG.products[i].getN()){
-                                     quantityProducts[i]=quantityProducts[i]+1;
+                                     SG.quantityProducts[i]=SG.quantityProducts[i]+1;
                                  }
                              }
                              }
@@ -67,7 +66,7 @@ public class Sales {
                   //Subtotal
                     Float subtotal=0f;
                      for (int i = 0; i < SG.products.length; i++) {
-                         subtotal= subtotal+(SG.products[i].getPrice()*quantityProducts[i]);
+                         subtotal= subtotal+(SG.products[i].getPrice()*SG.quantityProducts[i]);
                      }
                      business.setSubtotal(subtotal);
                 }else{
@@ -80,15 +79,17 @@ public class Sales {
             case 4:  
                 String coupon= sg.getDataString("Ingrese un cupon");
                 discount= searchCoupon(coupon);
-                System.out.println("Cupon aplicado exitosamente");
+                
                 business.setDiscount(discount);
-                Integer checkIn= sg.getDataInteger("¿Desea continuar para emitir una factura? \n1. Si                 \n2. No ");
+                Integer checkIn= sg.getDataInteger("¿Desea continuar para emitir una factura? 1. Si                2. No ");
                 if(checkIn>=2){
                     sg.initialMenu();
                     break;
                 }
                 
-            case 5:      
+            case 5:     
+                if(validateBusiness()){
+                
                 System.out.println("");
                 System.out.println("---------Emision de factura-------");
                 System.out.println("-------------SUPER 25-------------");
@@ -98,8 +99,8 @@ public class Sales {
                 System.out.println("Fecha: "+ business.getDate());
                 System.out.println("--------Listado de productos-------");
                 for (int i = 0; i < SG.products.length; i++) {
-                    if(quantityProducts[i]>0){
-                    System.out.println("("+quantityProducts[i]+")"+ SG.products[i].getName()+" --------"+SG.products[i].getPrice());
+                    if(SG.quantityProducts[i]>0){
+                    System.out.println("("+SG.quantityProducts[i]+")"+ SG.products[i].getName()+" --------"+SG.products[i].getPrice());
                     }                    
                 }
                 Float totalDiscount=business.getSubtotal()*business.getDiscount();
@@ -107,6 +108,7 @@ public class Sales {
                 System.out.println("Descuento: "+ business.getDiscount()+ " ---->"+" "+totalDiscount);
                 System.out.println("Total: "+(business.getSubtotal()-totalDiscount));
                 System.out.println("-----------------------------------------");
+                }
                 break;
             default:
                 throw new AssertionError();
@@ -129,10 +131,27 @@ public class Sales {
         for (int i = 0; i < SG.coupons.length; i++) {
             if(coupon.equals(SG.coupons[i].getName())){
                 System.out.println("Cupon encontrado el descuento es de: "+(SG.coupons[i].getDiscount()*100)+"%");
+                System.out.println("Cupon aplicado exitosamente");
                 discount= SG.coupons[i].getDiscount();
             }
         }
+        if(discount==0){
+            System.out.println("Cupon invalido");
+        }
+        
         return discount;
+    }
+    
+    public static Boolean validateBusiness(){
+        Boolean validation=true;
+        if (SG.businesses[0]!= null) {
+            
+            
+        }else{
+        System.out.println("Error, no puede acceder antes debe comprar productos");    
+        validation= false;
+        }
+        return validation;
     }
     
 }

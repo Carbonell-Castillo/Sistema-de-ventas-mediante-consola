@@ -15,6 +15,8 @@ public class SG {
     
     public static Product[] products;
     public static Coupon[] coupons;
+    public static Business[] businesses= new Business[1];
+    public static Integer quantityProducts[];
     Scanner readData = new Scanner(System.in);
     //menu
     
@@ -143,6 +145,8 @@ public class SG {
         coupons= new Coupon[length];
     }
     
-    
+    public void setNewQuantityProducts(Integer length){
+        quantityProducts= new Integer[length];
+    }
     
 }
