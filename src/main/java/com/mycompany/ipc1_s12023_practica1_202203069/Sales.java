@@ -152,6 +152,7 @@ public class Sales {
                         System.out.println(SG.products[i].getName()+" ---------> "+ SG.quantityProducts[i]);
                     }
                     System.out.println("---------------------------");
+                    sg.initialMenu();
                 }
                 break;
             default:

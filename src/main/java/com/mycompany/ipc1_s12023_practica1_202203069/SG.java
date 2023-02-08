@@ -53,7 +53,7 @@ public class SG {
     public Integer getDataInteger(String message){
         Integer num=0;
         boolean validation=false;
-        readData.reset();
+        
         do {            
             try {
                 showMessage(message);
@@ -91,8 +91,11 @@ public class SG {
     }
    public void conditionalMenu(Integer optionMenu){
        AddData addData = new AddData();
+       
        System.out.println("Ten en cuenta que si tenias registros previos seran eliminados.");
+       readData.nextLine();
        Integer subOption= getDataInteger("¿Aun asi quieres continuar? \n 1. Si      2. no");       
+       
         if(subOption==1){
             addData.operations(optionMenu);
         }else{
