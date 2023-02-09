@@ -17,7 +17,7 @@ public class SG {
     public static Coupon[] coupons = new Coupon[1];
     public static Business[] businesses= new Business[1];
     
-    public static Integer quantityProducts[];
+    public static Integer quantityProducts[][]= new Integer[1][1];
     Scanner readData = new Scanner(System.in);
     //menu
     
@@ -79,6 +79,7 @@ public class SG {
            System.out.println("4. Aplicar descuentos a las compras con codigos promocionales");
            System.out.println("5. Emitir factura");
            System.out.println("6. Emitir reporte");
+            System.out.println("7. salir");
            option= readData.nextInt();
            if(option<0 || option>7){
                System.out.println("Opcion seleccionada incorrecta, vuelva a selecionar una opcion");
@@ -153,8 +154,12 @@ public class SG {
         coupons= new Coupon[length];
     }
     
-    public void setNewQuantityProducts(Integer length){
-        quantityProducts= new Integer[length];
+    public void setNewQuantityProducts(Integer length1, Integer length2){
+        quantityProducts= new Integer[length1][length2];
+    }
+    
+    public void setNewBusinesses(Integer length){
+        businesses = new Business[length];
     }
     
 }

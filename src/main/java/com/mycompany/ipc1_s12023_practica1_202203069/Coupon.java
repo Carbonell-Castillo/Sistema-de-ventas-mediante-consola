@@ -11,15 +11,18 @@ package com.mycompany.ipc1_s12023_practica1_202203069;
 public class Coupon {
     private String name;
     private Float discount;
-
+    private Boolean used;
+    
     public Coupon(){
         name="";
         discount=0f;
+        used=false;
     }
     
-    public Coupon(String name, Float discount) {
+    public Coupon(String name, Float discount, Boolean used) {
         this.name = name;
         this.discount = discount;
+        this.used = used;
     }
 
     public String getName() {
@@ -36,6 +39,14 @@ public class Coupon {
 
     public void setDiscount(Float discount) {
         this.discount = discount;
+    }
+
+    public Boolean getUsed() {
+        return used;
+    }
+
+    public void setUsed(Boolean used) {
+        this.used = used;
     }
     
     

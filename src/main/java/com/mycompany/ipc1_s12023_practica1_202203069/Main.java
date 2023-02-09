@@ -25,7 +25,6 @@ public class Main {
         if(data.validationCredentials()){
             //Show menu
             Integer opcionElegida=data.menu();
-            AddData.optionss=opcionElegida;
             addData.operations(  opcionElegida);
             
         }

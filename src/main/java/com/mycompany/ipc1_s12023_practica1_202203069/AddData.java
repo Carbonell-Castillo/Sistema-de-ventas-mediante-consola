@@ -12,17 +12,42 @@ import java.util.Scanner;
 public class AddData {
     //Operations
     
-    public static int optionss;
     
     SG sgData = new SG();
+    public static Integer quantityOfNewProducts=0;
+    public static Integer quantityNewValidate=0;
     public  void operations(Integer option){
         
         
         switch (option) {
             case 1:
-                Integer quantityOfProducts= sgData.getDataInteger("Ingrese la cantidad de productos que desea registrar");
-                sgData.setNewProducts(quantityOfProducts);
-                System.out.println("Datos a registrar: "+ sgData.products.length);
+                
+                if(SG.products.length>=3){
+                    Integer validationAdd= sgData.getDataInteger("Actualmente tiene "+ SG.products.length+" Agregados ¿Deseas conservarlos y agregar nuevos? \n 1. Si      2. no");
+                    if(validationAdd==1){
+                        quantityOfNewProducts= sgData.getDataInteger("Ingrese la cantidad de nuevos productos que desea registrar");
+                        Product originalProducts[]= SG.products;
+                        sgData.setNewProducts((originalProducts.length+quantityOfNewProducts));
+                      
+                         
+                            quantityNewValidate=quantityOfNewProducts;
+                            quantityNewValidate=SG.products.length-quantityNewValidate;
+                          
+                      for (int i = 0; i < originalProducts.length; i++) {
+                         SG.products[i] = originalProducts[i];
+                      }
+                      
+                    }else if(validationAdd==2){
+                        addQuantityProducts();
+                    }else{
+                        sgData.initialMenu();
+                    }
+                }else{
+                        addQuantityProducts();
+                  }
+                
+                
+                System.out.println("Datos a registrar: "+ quantityOfNewProducts);
                 
                 String productName;
                 Float priceProduct;
@@ -33,7 +58,7 @@ public class AddData {
                 if(!validationProduct){
                     i++;
                 }
-                    if(i<=sgData.products.length){
+                    if(i<=quantityOfNewProducts){
                         System.out.println("");
                         System.out.println("--------Regitro No."+i);
                         productName= sgData.getDataString("Ingrese el nombre del producto");
@@ -48,9 +73,18 @@ public class AddData {
                 } while (validationProduct || i<=sgData.products.length);
                 break;
             case 2:
+                Boolean validationQuantityOfCoupons=true;
+                do {                    
+                    Integer quantityOfCoupons = sgData.getDataInteger("Ingrese la cantidad de codigos de descuento que deseas registrar");
+                    if(quantityOfCoupons>=3){
+                    validationQuantityOfCoupons=false;
+                    sgData.setNewCoupons(quantityOfCoupons);    
+                    }else{
+                        System.out.println("Error, como minimo tiene permido ingresar 10 cupones");
+                    }
                 
-                Integer quantityOfCoupons = sgData.getDataInteger("Ingrese la cantidad de codigos de descuento que deseas registrar");
-                sgData.setNewCoupons(quantityOfCoupons);
+                } while (validationQuantityOfCoupons);
+                
                 System.out.println("Datos a registrar: "+ sgData.coupons.length);
                 
                 String code;
@@ -83,10 +117,32 @@ public class AddData {
         
     }
     
+    public void addQuantityProducts(){
+    
+    boolean validationQuantityOfProducts= true;
+    do {                    
+                    
+        quantityOfNewProducts= sgData.getDataInteger("Ingrese la cantidad de productos que desea registrar");
+        if(quantityOfNewProducts>=3){
+            validationQuantityOfProducts=false;
+            sgData.setNewProducts(quantityOfNewProducts);
+        }else{
+            System.out.println("Error como minimo tiene permitido ingresar 10 productos");
+        }
+                
+    } while (validationQuantityOfProducts);
+    }
+    
+    
+    
     public Boolean validateDataProduct(String name, Float price){
         Boolean validation=false;
         //if the name exist
-        for (int i = 0; i < sgData.products.length ; i++) {
+        
+        
+       
+        
+        for (int i=0 ; i < sgData.products.length ; i++) {
             if(sgData.products[i] != null){
                 if(sgData.products[i].getName().equals(name)){
                     System.out.println("El nombre del producto ya existe, ingreselo nuevamente");
@@ -99,12 +155,23 @@ public class AddData {
                     validation=true;
                     break;
                 }else{
-                    sgData.products[i]= new Product((i+1),name, price);
+                    if(quantityNewValidate>0){
+                        sgData.products[quantityNewValidate]= new Product((quantityNewValidate+1),name, price);
+                    System.out.println("------------------------------------");
+                    System.out.println("Registro del producto exitosamente No. "+ (quantityNewValidate+1));
+                    System.out.println("Nombre del producto: "+ sgData.products[quantityNewValidate].getName());
+                    System.out.println("Precio del producto: "+ sgData.products[quantityNewValidate].getPrice());
+                    System.out.println("------------------------------------");
+                    quantityNewValidate++;
+                    }else{
+                        sgData.products[i]= new Product((i+1),name, price);
                     System.out.println("------------------------------------");
                     System.out.println("Registro del producto exitosamente No. "+ (i+1));
                     System.out.println("Nombre del producto: "+ sgData.products[i].getName());
                     System.out.println("Precio del producto: "+ sgData.products[i].getPrice());
                     System.out.println("------------------------------------");
+                    }
+                    
                     break;
                 }
             }
@@ -117,7 +184,7 @@ public class AddData {
 
         Boolean validation=false;
         
-        if(code.length()<=4){
+        if(code.length()==4){
         
         //if the name exist
         for (int i = 0; i < sgData.coupons.length ; i++) {
@@ -133,7 +200,7 @@ public class AddData {
                     validation=true;
                     break;
                 }else{
-                    sgData.coupons[i]= new Coupon(code, (discount/100));
+                    sgData.coupons[i]= new Coupon(code, (discount/100), false);
                     System.out.println("------------------------------------");
                     System.out.println("Registro del Cupon exitosamente No. "+ (i+1));
                     System.out.println("Codigo: "+ sgData.coupons[i].getName());
@@ -144,7 +211,7 @@ public class AddData {
             }
         }
         }else{
-            System.out.println("El codigo excede los 4 caracteres, ingreselo nuevamente");
+            System.out.println("El codigo no cuenta con 4 caracteres, ingreselo nuevamente");
             validation = true;
         }
         return validation;
