@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ipc1_s12023_practica1_202203069;
+package IPC1Practice1;
 
 /**
  *
@@ -22,7 +22,7 @@ public class AddData {
         switch (option) {
             case 1:
                 
-                if(SG.products.length>=3){
+                if(SG.products.length>=10){
                     Integer validationAdd= sgData.getDataInteger("Actualmente tiene "+ SG.products.length+" Agregados ¿Deseas conservarlos y agregar nuevos? \n 1. Si      2. no");
                     if(validationAdd==1){
                         quantityOfNewProducts= sgData.getDataInteger("Ingrese la cantidad de nuevos productos que desea registrar");
@@ -90,7 +90,7 @@ public class AddData {
                 Boolean validationQuantityOfCoupons=true;
                 do {                    
                     Integer quantityOfCoupons = sgData.getDataInteger("Ingrese la cantidad de codigos de descuento que deseas registrar");
-                    if(quantityOfCoupons>=3){
+                    if(quantityOfCoupons>=10){
                     validationQuantityOfCoupons=false;
                     sgData.setNewCoupons(quantityOfCoupons);    
                     }else{
@@ -137,7 +137,7 @@ public class AddData {
     do {                    
                     
         quantityOfNewProducts= sgData.getDataInteger("Ingrese la cantidad de productos que desea registrar");
-        if(quantityOfNewProducts>=3){
+        if(quantityOfNewProducts>=10){
             validationQuantityOfProducts=false;
             sgData.setNewProducts(quantityOfNewProducts);
         }else{

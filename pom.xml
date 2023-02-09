@@ -11,4 +11,22 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>com.mycompany.ipc1_s12023_practica1_202203069.IPC1_S12023_Practica1_202203069</exec.mainClass>
     </properties>
+    
+        <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <mainClass>IPC1Practice1.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins> 
+    </build>
 </project>

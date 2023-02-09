@@ -1,2 +1,9 @@
-com\mycompany\ipc1_s12023_practica1_202203069\Credentials.class
-com\mycompany\ipc1_s12023_practica1_202203069\Main.class
+IPC1Practice1\Identity.class
+IPC1Practice1\Business.class
+IPC1Practice1\Coupon.class
+IPC1Practice1\AddData.class
+IPC1Practice1\Sales.class
+IPC1Practice1\SG.class
+IPC1Practice1\Product.class
+IPC1Practice1\Main.class
+IPC1Practice1\Credentials.class

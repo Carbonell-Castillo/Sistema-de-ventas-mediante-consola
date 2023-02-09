@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ipc1_s12023_practica1_202203069;
+package IPC1Practice1;
 
 /**
  *
@@ -13,8 +13,8 @@ public class Credentials {
     private String password;
 
     public Credentials(){
-        user="bruce";
-        password="123";
+        user="cajero202203069";
+        password="ipc1202203069";
     }
     
     public Credentials(String user, String password) {

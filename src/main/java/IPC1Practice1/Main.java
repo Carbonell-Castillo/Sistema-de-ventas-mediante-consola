@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.ipc1_s12023_practica1_202203069;
+package IPC1Practice1;
 
 import java.util.Scanner;
 
