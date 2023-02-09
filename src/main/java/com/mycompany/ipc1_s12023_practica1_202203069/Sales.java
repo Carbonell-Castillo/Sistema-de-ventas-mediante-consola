@@ -33,16 +33,7 @@ public class Sales {
                       }
                       
                       //validate quantity
-                      Integer originalMatrix[][] = SG.quantityProducts;
-                      
-                      sg.setNewQuantityProducts(SG.businesses.length, SG.products.length); 
-
-                        for (int i = 0; i < originalMatrix.length; i++) {
-                            for (int j = 0; j < originalMatrix[i].length; j++) {
-                                SG.quantityProducts[i][j] = originalMatrix[i][j];
-                            }
-                        }
-
+                      sg.newMatrix();
                       
                   }else{
                       

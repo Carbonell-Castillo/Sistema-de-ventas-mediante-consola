@@ -28,17 +28,31 @@ public class AddData {
                         quantityOfNewProducts= sgData.getDataInteger("Ingrese la cantidad de nuevos productos que desea registrar");
                         Product originalProducts[]= SG.products;
                         sgData.setNewProducts((originalProducts.length+quantityOfNewProducts));
-                      
-                         
                             quantityNewValidate=quantityOfNewProducts;
                             quantityNewValidate=SG.products.length-quantityNewValidate;
-                          
+                            System.out.println("Antiga matriz columnas: "+ SG.quantityProducts[0].length);
+                          sgData.newMatrix();
+                          System.out.println("Nueva matriz columnas: "+ SG.quantityProducts[0].length);
                       for (int i = 0; i < originalProducts.length; i++) {
                          SG.products[i] = originalProducts[i];
                       }
                       
                     }else if(validationAdd==2){
-                        addQuantityProducts();
+                        Integer subOption= sgData.getDataInteger("Ten en cuenta que al borrar todos los productos las ventas se eleiminaran, ¿Deseas continuar? \n 1. Si      2. no");
+                        quantityNewValidate=0;
+                            if(subOption==1){
+                                SG.businesses= new Business[1];
+                                SG.quantityProducts= new Integer[1][1];
+                                System.out.println(" ");
+                                System.out.println("------------------------------");
+                                System.out.println("Los datos han sido eliminados");
+                                System.out.println("------------------------------");
+                                System.out.println(" ");
+                                addQuantityProducts();    
+                            }else{
+                                sgData.initialMenu();
+                            }
+                        
                     }else{
                         sgData.initialMenu();
                     }
@@ -195,7 +209,7 @@ public class AddData {
                     break;
                 }
             }else{
-                if(discount<0 || discount>100){
+                if(discount<=0 || discount>100){
                     System.out.println("El porcentaje del descuento excede el limite ingreselo nuevamente");
                     validation=true;
                     break;

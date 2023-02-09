@@ -104,14 +104,17 @@ public class SG {
         }
    }
     public  void initialMenu(){
-       
+       AddData addData = new AddData();
        Sales sales = new Sales();
         System.out.println("");
         Integer option= getDataInteger("¿Deseas visualizar el menu nuevamente? \n 1. Si      2. no");
         
         if(option==1){
             Integer optionMenu=menu();
-            if(optionMenu==1 || optionMenu==2){
+            if(optionMenu==1){
+                addData.operations(optionMenu);    
+            }
+            else if(optionMenu==2){
                 conditionalMenu(optionMenu);
             }else{
                 sales.operationSales(optionMenu);
@@ -143,7 +146,27 @@ public class SG {
         
     }
     
-    
+    public void newMatrix(){
+        Integer originalMatrix[][] = SG.quantityProducts;
+                      
+        setNewQuantityProducts(SG.businesses.length, SG.products.length); 
+
+            for (int i = 0; i < originalMatrix.length; i++) {
+                for (int j = 0; j < originalMatrix[i].length; j++) {
+                    SG.quantityProducts[i][j] = originalMatrix[i][j];
+                }
+            }
+            for (int i = 0; i < SG.products.length; i++) {
+                for (int j = 0; j < SG.businesses.length; j++) {
+                    if(SG.quantityProducts[j][i] != null){
+                        
+                   } else{
+                        SG.quantityProducts[j][i] = 0;   
+                   }
+                }
+                    
+            }
+    }
  
     
     public void setNewProducts(Integer length) {
