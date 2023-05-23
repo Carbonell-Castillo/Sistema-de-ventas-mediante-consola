@@ -1,7 +1,4 @@
-# [IPC1]S12023_Practica1_-202203069-
-#### Nombre Completo: Bruce Carbonell Castillo Cifuentes
-#### Carné: 202203069
-#### Nombre del curso y seccion: IPC1 Seccion B
+# Sistema de ventas mediante consola
 
 Este proyecto consiste en la creación de un sistema de ventas para una nueva empresa minorista llamada Super. La empresa está tratando de entrar en el mercado de la venta de productos cotidianos como comida, ropa, artículos de higiene, etc.
 
